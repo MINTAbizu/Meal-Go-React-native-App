@@ -10,8 +10,12 @@ import styled from 'styled-components/native'
 //     
 //     ${StatusBar.currentHeight  && `margin-top:${StatusBar.currentHeight}`px} ,
 // `
+// const SearchContainer=styled(View)`
+// padding:16px
+// `
+
 const SearchContainer=styled(View)`
-padding:16px
+padding:20px
 `
 const RestorantListcontainer=styled(View)`
 padding:16px,
