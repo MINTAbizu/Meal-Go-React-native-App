@@ -20,10 +20,10 @@ export const Spacer =({Varieant})=>{
         return <TopSmall/>
     }
      if(Varieant === "Top.medium"){
-        return <TopSmall/>
+        return <TopMedium/>
     }
      if(Varieant === "Top.large"){
-        return <TopSmall/>
+        return <TopLarge/>
     }
 
 }
