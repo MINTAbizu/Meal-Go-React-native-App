@@ -4,17 +4,7 @@ import { Card } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer } from '../../Spacer/Spacer';
 import { SvgXml } from 'react-native-svg';
-import {
-  Open,
-  Section,
-  SectionEnd,
-  Card as StyledCard,
-  CardCover,
-  Info,
-  Titile,
-  RatingRow,
-  Address,
-} from '../Restorant/Rstorantinfostyle.js';
+import { Open, Section, SectionEnd, Info, Titile, RatingRow, Address } from '../Restorant/Rstorantinfostyle.js';
 
 export default function RstorantInfo({ restorant = {} }) {
   const {
@@ -32,6 +22,7 @@ export default function RstorantInfo({ restorant = {} }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Card elevation={5}>
+        {/* Use react-native-paper Card.Cover */}
         <Card.Cover key={name} source={{ uri: photo[0] }} />
         <Info>
           <Titile>{name}</Titile>
