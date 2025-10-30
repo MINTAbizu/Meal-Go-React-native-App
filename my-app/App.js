@@ -1,12 +1,13 @@
 import React from "react";
+
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import RstorantScreen from "./src/component/features/Screen/RstorantScreen";
+
 export default function App() {
   return (
     <>
-
     <RstorantScreen/>
-    
+     
 
       <ExpoStatusBar style="auto" />
     </>

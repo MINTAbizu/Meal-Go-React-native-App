@@ -4,8 +4,54 @@ import { Card } from "react-native-paper";
 import styled from "styled-components";
 
 const Name=styled.Text`
-color:orange
+color:'orange',
 
+
+`
+const RestaurantCard=styled(Card)`
+  background-color: white;
+   margin: 10px;
+  border-radius: 10px;
+
+  /* Shadow for iOS */
+  shadow-color: #000;
+  shadow-opacity: 0.2;
+  shadow-radius: 4px;
+  shadow-offset: 0px 2px;
+
+  /* Elevation for Android */
+  elevation: 5;
+ 
+
+`
+const CardCover=styled(Card.Cover)`
+margin:10px;
+`
+const Address=styled(Text)`
+  font-size: 14px;
+  color: hsla(162, 93%, 35%, 1.00);
+  margin-bottom: 6px;
+
+`
+const Closed=styled(Text)`
+  
+  color: red;
+ 
+
+`
+const Open=styled(Text)`
+  
+  color: green;
+
+`
+
+const StatusRow=styled(View)`
+flex-direction: row;
+  align-items: center;
+  gap: 10px;
+`
+const CardContainer =styled(View)`
+padding:12px
 `
 export default function RestaurantInfo({ restaurant = {} }) {
   const {
@@ -20,63 +66,63 @@ export default function RestaurantInfo({ restaurant = {} }) {
   } = restaurant;
 
   return (
-    <Card elevation={5} style={styles.card}>
-      <Card.Cover key={name} style={styles.cover} source={{ uri: photos[0] }} />
-      <View style={styles.info}>
-        <Name style={styles.name}>{name}</Name>
-        <Text style={styles.address}>{address}</Text>
+    <RestaurantCard elevation={5} >
+      <CardCover key={name}  source={{ uri: photos[0] }} />
+      <CardContainer >
+        <Name >{name}</Name>
+        <Address >{address}</Address>
 
-        <View style={styles.statusRow}>
+        <StatusRow >
           {isClosedTemporarily && (
-            <Text style={styles.closed}>CLOSED TEMPORARILY</Text>
+            <Closed >CLOSED TEMPORARILY</Closed>
           )}
-          {isOpenNow && <Text style={styles.open}>OPEN NOW</Text>}
-        </View>
-      </View>
-    </Card>
+          {isOpenNow && <Open >OPEN NOW</Open>}
+        </StatusRow>
+      </CardContainer>
+    </RestaurantCard>
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#fff",
-    margin: 10,
-    borderRadius: 10,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-  },
-  cover: {
-    // borderTopLeftRadius: 10,
-    // borderTopRightRadius: 10,
-    margin:10
-  },
-  info: {
-    padding: 12,
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-  address: {
-    fontSize: 14,
-    color: "#666",
-    marginBottom: 6,
-  },
-  statusRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  closed: {
-    color: "red",
-    fontWeight: "bold",
-  },
-  open: {
-    color: "green",
-    fontWeight: "bold",
-  },
-});
+// const styles = StyleSheet.create({
+// //   card: {
+// //     // backgroundColor: "#fff",
+//     margin: 10,
+//     borderRadius: 10,
+//     elevation: 5,
+//     shadowColor: "#000",
+//     shadowOpacity: 0.2,
+//     shadowRadius: 4,
+//     shadowOffset: { width: 0, height: 2 },
+// //   },
+//   cover: {
+//     // borderTopLeftRadius: 10,
+//     // borderTopRightRadius: 10,
+//     margin:10
+//   },
+//   info: {
+//     padding: 12,
+//   },
+//   name: {
+//     fontSize: 18,
+//     fontWeight: "bold",
+//     marginBottom: 4,
+//   },
+//   address: {
+//     fontSize: 14,
+//     color: "#666",
+//     marginBottom: 6,
+//   },
+//   statusRow: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     gap: 10,
+//   },
+//   closed: {
+//     color: "red",
+//     fontWeight: "bold",
+//   },
+//   open: {
+//     color: "green",
+//     fontWeight: "bold",
+//   },
+// });
