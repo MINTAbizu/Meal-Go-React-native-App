@@ -1,69 +1,59 @@
-import React from 'react'
-import { SafeAreaView, View } from 'react-native'
-import {searchBar} from 'react-native-paper'
-import {RestorantInfo} from '../Restorant/RstorantInfo'
-// install  from react native-paper
-// import styled from 'styled-components/native'
-import { StatusBar,FlatList } from 'react-native'
-import styled from 'styled-components/native'
-import {SafeArea} from '../../utility/SafeAreaView.js'
-//export const SafeArea=styled(View)`
-//     flex: 1,
-//     
-//     ${StatusBar.currentHeight  && `margin-top:${StatusBar.currentHeight}`px} ,
-// `
-// const SearchContainer=styled(View)`
-// padding:16px
-// `
+import React from 'react';
+import { SafeAreaView, View, Text, Image } from 'react-native-safe-area-context';
+import { Card } from 'react-native-paper';
+import styled from 'styled-components/native';
+import { Spacer } from '../../Spacer/Spacer';
+import { SvgXml } from 'react-native-svg';
+import {
+  Open,
+  Section,
+  SectionEnd,
+  Card as StyledCard,
+  CardCover,
+  Info,
+  Titile,
+  RatingRow,
+  Address,
+} from '../Restorant/Rstorantinfostyle.js';
 
-const SearchContainer=styled(View)`
-padding:20px
-`
-const RestorantListcontainer=styled(View)`
-padding:16px,
-background-color:blue,
-flex:1
-`
-// npm i @react-navigation/native
-// expo install react-native-gesture-handler
-//   react-native-reanimated
-//   react-native-screens
-//   react-native-safe-area-context
-//   react-native-community/masked-view
+export default function RstorantInfo({ restorant = {} }) {
+  const {
+    name = 'Some Restorant',
+    icon = '',
+    photo = [''],
+    address = 'Some Street',
+    isopennow = true,
+    isclosedtemoprarly = false,
+    rating = 4,
+  } = restorant;
 
-//   npm install react-navigation/bootom-tabs
- 
-export default function RstorantScreen() {
+  // const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
-      <>
-        <SafeAreaView style={styles.container} marginTop={StatusBar.currentHeight} >
-          <View>
-            <searchBar/>
-          </View>
-           <View>
-            <FlatList
-                 data={[{name:1},{name:2},{name:3},{name:4},{name:5},{name:6}]}
-                 renderItem={()=> <RestorantInfo/>}
-                 keyExtractor={(item)=>item.name}
-                 contentContainerStyle={{padding:16}}
-            
-            />
-     
-          </View>
-         
-          
-         
-        </SafeAreaView>
-       </>
-  )
+    <SafeAreaView style={{ flex: 1 }}>
+      <Card elevation={5}>
+        <Card.Cover key={name} source={{ uri: photo[0] }} />
+        <Info>
+          <Titile>{name}</Titile>
+          <Section>
+            {/* Uncomment when using SVG stars */}
+            {/* <RatingRow>
+              {ratingArray.map((_, i) => (
+                <SvgXml xml={star} width={20} height={20} key={i} />
+              ))}
+            </RatingRow> */}
+            <SectionEnd>
+              {isclosedtemoprarly && <Text style={{ color: 'red' }}>Closed Temporarily</Text>}
+              <Spacer Varieant="Top.small" />
+              <View style={{ paddingLeft: 10 }} />
+              {isopennow && <Open xml={open} width={20} height={20} />}
+              <View style={{ paddingLeft: 10 }} />
+              {icon ? <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} /> : null}
+            </SectionEnd>
+          </Section>
+          <Address>{address}</Address>
+        </Info>
+      </Card>
+    </SafeAreaView>
+  );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#b62121ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop:StatusBar.currentHeight,
-  },
-
-});

@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import {  Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { RstorantScreen } from './src/component/features/Screen/RstorantScreen';
 import { ThemeProvider } from 'styled-components/native';

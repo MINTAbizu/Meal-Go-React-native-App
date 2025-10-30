@@ -6,7 +6,7 @@ import { Spacer } from '../../Spacer/Spacer'
 import {Open,Section,SectionEnd,Card,CardCover,Info,Titile,RatingRow,Address} from '../Restorant/Rstorantinfostyle.js'
 
 
-
+import { SvgXml } from 'react-native-svg';
 
 export default function RstorantInfo({restorant={}}) {
 
