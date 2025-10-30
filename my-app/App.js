@@ -1,64 +1,59 @@
+import React from 'react';
+import { SafeAreaView, Text } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import {RstorantScreen} from './src/component/features/Screen/RstorantScreen'
+import { RstorantScreen } from './src/component/features/Screen/RstorantScreen';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './src/infrastructure/themee/inde';
-import {SafeAreaView} from './utility/SafeAreaView.js'
-// for create navigation button import it 
-import {NavigationContainer} from '@react-navigation/native'
-import {createBootomTabNavigator} from 'react-navigation/bootom-tabs'
-import {IonIcon} from '@expo/vector-icons'
-// install react-nativ-paper
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
-  const Tab=createBootomTabNavigator()
-  const Settings=()=><SafeAreaView> <Text>Settings</Text></SafeAreaView>
-  const Map=()=> <SafeAreaView> <Text>Map</Text></SafeAreaView>
+const Tab = createBottomTabNavigator();
+
+// Dummy screens
+const Settings = () => (
+  <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Settings</Text>
+  </SafeAreaView>
+);
+
+const Map = () => (
+  <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Map test</Text>
+  </SafeAreaView>
+);
+
 export default function App() {
-
   return (
-<>
-<ThemeProvider theme={theme}> 
-{/* <RstorantScreen/> */}
-<NavigationContainer>
-  <Tab.navigator 
+    <>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                let iconName;
 
-  screenOptions={({route})=>({
-    tabBarIcon:({focused,color,size})=>{
-        let iconName=;
-        if(route.name === 'Restorant'){
-         
-          iconName="md-restaurant "
-        }else if (route.name === "Settings"){
-          iconName="md-settings"
-        }else if(route.name="map"){
-           iconName="md-map"
+                if (route.name === 'Restorant') {
+                  iconName = 'md-restaurant';
+                } else if (route.name === 'Settings') {
+                  iconName = 'md-settings';
+                } else if (route.name === 'Map') {
+                  iconName = 'md-map';
+                }
 
-        }
-      }
-      
-
-      return <IonIcon name={iconName} size={size} color={color/>}
-    
-  })}
-
-  tabBarOptions={{
-    activeTintColor:"tomato",
-    inactiveTintColor:"gray"
-  }}
-  
-   >
-
-    <Tab.Screen name="Restorant" component={RstorantScreen}/>
-    <Tab.Screen name="Map" component={}/>
-    <Tab.Screen name="Settings" component={}/>
-    
-    <Tab.navigator>
-  
-  
-   </NavigationContainer>
-</ThemeProvider>
-
- <ExpoStatusBar style="auto" />
-</>
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: 'tomato',
+              tabBarInactiveTintColor: 'gray',
+            })}
+          >
+            <Tab.Screen name="Restorant" component={RstorantScreen} />
+            <Tab.Screen name="Map" component={Map} />
+            <Tab.Screen name="Settings" component={Settings} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
+      <ExpoStatusBar style="auto" />
+    </>
   );
 }
-
