@@ -1,50 +1,71 @@
-import React from 'react';
-import { SafeAreaView, View, Text, Image } from 'react-native-safe-area-context';
-import { Card } from 'react-native-paper';
-import styled from 'styled-components/native';
-import { Spacer } from '../../Spacer/Spacer';
-import { SvgXml } from 'react-native-svg';
-import { Open, Section, SectionEnd, Info, Titile, RatingRow, Address } from '../Restorant/Rstorantinfostyle.js';
+import React from 'react'
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, View, StatusBar, StyleSheet } from "react-native";
 
-export default function RstorantInfo({ restorant = {} }) {
-  const {
-    name = 'Some Restorant',
-    icon = '',
-    photo = [''],
-    address = 'Some Street',
-    isopennow = true,
-    isclosedtemoprarly = false,
-    rating = 4,
-  } = restorant;
+import { Searchbar } from "react-native-paper";
+import RstorantInfo from '../Restorant/RstorantInfo';
 
-  // const ratingArray = Array.from(new Array(Math.floor(rating)));
-
+function RstorantScreen() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Card elevation={5}>
-        {/* Use react-native-paper Card.Cover */}
-        <Card.Cover key={name} source={{ uri: photo[0] }} />
-        <Info>
-          <Titile>{name}</Titile>
-          <Section>
-            {/* Uncomment when using SVG stars */}
-            {/* <RatingRow>
-              {ratingArray.map((_, i) => (
-                <SvgXml xml={star} width={20} height={20} key={i} />
-              ))}
-            </RatingRow> */}
-            <SectionEnd>
-              {isclosedtemoprarly && <Text style={{ color: 'red' }}>Closed Temporarily</Text>}
-              <Spacer Varieant="Top.small" />
-              <View style={{ paddingLeft: 10 }} />
-              {isopennow && <Open xml={open} width={20} height={20} />}
-              <View style={{ paddingLeft: 10 }} />
-              {icon ? <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} /> : null}
-            </SectionEnd>
-          </Section>
-          <Address>{address}</Address>
-        </Info>
-      </Card>
-    </SafeAreaView>
-  );
+    <>
+    <SafeAreaView style={styles.container}>
+        {/* Searchbar Section */}
+        <View style={styles.searchbarContainer}>
+          <Searchbar
+            placeholder="Search..."
+            style={styles.searchbar}
+            inputStyle={{ fontSize: 16 }}
+          />
+        </View>
+        <RstorantInfo/>
+
+        {/* Main Content */}
+        <View >
+         
+        </View>
+      </SafeAreaView>
+
+      
+    </>
+  )
 }
+
+export default RstorantScreen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f9fa",
+    marginTop: StatusBar.currentHeight || 0,
+  },
+
+  searchbarContainer: {
+    // paddingHorizontal: 16,
+    // paddingVertical: 12,
+    backgroundColor: "#f8f9fa",
+    // iOS Shadow
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.5,
+    // Android Shadow
+    elevation: 5,
+   
+    margin:12
+  },
+
+  searchbar: {
+    borderRadius: 12,
+    backgroundColor: "white",
+  },
+
+  // content: {
+  //   flex: 1,
+  //   backgroundColor: "green",
+  //   borderTopLeftRadius: 20,
+  //   borderTopRightRadius: 20,
+  //   marginTop: 10,
+  //   padding: 20,
+  // },
+
+ 
+});

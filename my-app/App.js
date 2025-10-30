@@ -1,60 +1,53 @@
-import React from 'react';
-import {  Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { RstorantScreen } from './src/component/features/Screen/RstorantScreen';
-import { ThemeProvider } from 'styled-components/native';
-import { theme } from './src/infrastructure/themee/inde';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-
-const Tab = createBottomTabNavigator();
-
-// Dummy screens
-const Settings = () => (
-  <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Settings</Text>
-  </SafeAreaView>
-);
-
-const Map = () => (
-  <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Map test</Text>
-  </SafeAreaView>
-);
-
+import React from "react";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import RstorantScreen from "./src/component/features/Screen/RstorantScreen";
 export default function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
 
-                if (route.name === 'Restorant') {
-                  iconName = 'md-restaurant';
-                } else if (route.name === 'Settings') {
-                  iconName = 'md-settings';
-                } else if (route.name === 'Map') {
-                  iconName = 'md-map';
-                }
+    <RstorantScreen/>
+    
 
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: 'tomato',
-              tabBarInactiveTintColor: 'gray',
-            })}
-          >
-            <Tab.Screen name="Restorant" component={RstorantScreen} />
-            <Tab.Screen name="Map" component={Map} />
-            <Tab.Screen name="Settings" component={Settings} />
-          </Tab.Navigator>
-        </NavigationContainer>
-      </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
   );
 }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#f8f9fa",
+//     marginTop: StatusBar.currentHeight || 0,
+//   },
+
+//   searchbarContainer: {
+//     // paddingHorizontal: 16,
+//     // paddingVertical: 12,
+//     backgroundColor: "#f8f9fa",
+//     // iOS Shadow
+//     shadowColor: "#000",
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowOpacity: 0.15,
+//     shadowRadius: 3.5,
+//     // Android Shadow
+//     elevation: 5,
+   
+//     margin:12
+//   },
+
+//   searchbar: {
+//     borderRadius: 12,
+//     backgroundColor: "white",
+//   },
+
+//   // content: {
+//   //   flex: 1,
+//   //   backgroundColor: "green",
+//   //   borderTopLeftRadius: 20,
+//   //   borderTopRightRadius: 20,
+//   //   marginTop: 10,
+//   //   padding: 20,
+//   // },
+
+ 
+// });
