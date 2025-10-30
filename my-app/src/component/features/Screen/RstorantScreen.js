@@ -17,11 +17,11 @@ function RstorantScreen() {
             inputStyle={{ fontSize: 16 }}
           />
         </View>
-        <RstorantInfo/>
+       
 
         {/* Main Content */}
-        <View >
-         
+        <View  >
+          <RstorantInfo/>
         </View>
       </SafeAreaView>
 
